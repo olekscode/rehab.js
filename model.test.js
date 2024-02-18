@@ -1,5 +1,5 @@
 // import { Model, Cell, Harvester } from "./index";
-const { Model, Cell, Harvester } = require('./index');
+const { ReHabModel, ReHabCell, ReHabHarvester } = require('./index');
 
 const INITIAL_MATRIX = [
   1, 1, 2, 1, 1,
@@ -10,7 +10,7 @@ const INITIAL_MATRIX = [
 let model, redFamily, greenFamily, blueFamily, blackFamily, pinkFamily;
 
 beforeEach(() => {
-  model = new Model();
+  model = new ReHabModel();
   model.initializeBiomassWithMatrix(INITIAL_MATRIX);
 
   [ redFamily,
@@ -312,11 +312,11 @@ test('Bird breeding with few harvesters', () => {
 });
 
 const biomassHarvestedFromCell = (numberOfHarvesters, biomassInCell) => {
-  const cell = new Cell();
+  const cell = new ReHabCell();
 
   const harvesters = Array(numberOfHarvesters)
     .fill(null)
-    .map((_) => new Harvester());
+    .map((_) => new ReHabHarvester());
 
   cell.biomass = biomassInCell;
   harvesters.forEach((harvester) => harvester.goToCell(cell));

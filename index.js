@@ -3,7 +3,7 @@ const NUMBER_OF_FAMILIES = 5;
 const NUMBER_OF_ROWS = 4;
 const NUMBER_OF_COLUMNS = 5;
 
-class Model {
+class ReHabModel {
   constructor() {
     this.numberOfRows = NUMBER_OF_ROWS;
     this.numberOfColumns = NUMBER_OF_COLUMNS;
@@ -19,7 +19,7 @@ class Model {
 
   initializeEmptyCells_() {
     for (let i = 0; i < this.numberOfRows * this.numberOfColumns; i++) {
-      this.cells.push(new Cell());
+      this.cells.push(new ReHabCell());
     }
   }
 
@@ -65,7 +65,7 @@ class Model {
 
   initializeFamilies_() {
     for (let i = 0; i < this.numberOfFamilies; i++) {
-      this.families.push(new Family());
+      this.families.push(new ReHabFamily());
     }
   }
 
@@ -88,7 +88,7 @@ class Model {
   }
 }
 
-class Cell {
+class ReHabCell {
   constructor() {
     this.biomass = 0;
     this.harvesters = [];
@@ -189,7 +189,7 @@ class Cell {
   }
 }
 
-class Harvester {
+class ReHabHarvester {
   constructor(id, family) {
     this.id = id;
     this.family = family;
@@ -203,7 +203,7 @@ class Harvester {
   }
 }
 
-class Family {
+class ReHabFamily {
   constructor() {
     this.numberOfHarvesters_ = HARVESTERS_PER_FAMILY;
     this.harvesters = [];
@@ -218,9 +218,9 @@ class Family {
 
   initializeHarvesters_() {
     for (let i = 0; i < this.numberOfHarvesters_; i++) {
-      this.harvesters.push(new Harvester(i + 1, this));
+      this.harvesters.push(new ReHabHarvester(i + 1, this));
     }
   }
 }
 
-module.exports = { Model, Cell, Harvester, Family };
+module.exports = { ReHabModel, ReHabCell, ReHabHarvester, ReHabFamily };
