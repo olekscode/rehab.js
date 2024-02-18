@@ -1,0 +1,30 @@
+{
+  "name": "rehab-game",
+  "version": "0.0.8",
+  "description": "A serious game developed at CIRAD",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olekscode/rehab.js.git"
+  },
+  "keywords": [
+    "serious",
+    "game",
+    "ecology",
+    "biodiversity",
+    "agent-based",
+    "modelling"
+  ],
+  "author": "Oleksandr Zaitsev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olekscode/rehab.js/issues"
+  },
+  "homepage": "https://github.com/olekscode/rehab.js#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
