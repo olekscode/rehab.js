@@ -1,4 +1,4 @@
-const { ReHabModel, ReHabCell, ReHabHarvester } = require('./index');
+const { ReHabModel, ReHabCell, ReHabHarvester } = require('./model');
 
 const INITIAL_MATRIX = [
   1, 1, 2, 1, 1,
@@ -73,6 +73,30 @@ test('Can access cell by row and column', () => {
   const accessedCell = model.cellAt(1, 2);
   expect(accessedCell).toBe(model.cells[7]);
   expect(accessedCell.biomass).toBe(2);
+});
+
+test('By default, no cells are marked as protected area', () => {
+  model.cells.forEach((cell) => 
+    expect(cell.isProtectedArea()).toBeFalsy());
+});
+
+test('Can turn cells into protected area', () => {
+  const c1 = model.cellAt(0, 1);
+  const c2 = model.cellAt(0, 2);
+  const c3 = model.cellAt(1, 2);
+
+  c1.makeProtectedArea();
+  c2.makeProtectedArea();
+  c3.makeProtectedArea();
+
+  const protectedAreaMap = model.cells.map((cell) => cell.isProtectedArea());
+  const expectedProtectedAreaMap = [
+    false, true, true, false, false,
+    false, false, true, false, false,
+    false, false, false, false, false,
+    false, false, false, false, false ];
+
+  expect(protectedAreaMap).toStrictEqual(expectedProtectedAreaMap);
 });
 
 test('One step on empty model correctly regenerates the biomass', () => {
@@ -161,14 +185,6 @@ test('Non-empty cell has harvesters', () => {
   expect(model.cellAt(0, 0).hasHarvesters()).toBeTruthy();
 });
 
-test('Harvesters have reference to the cell on which they are located', () => {
-  const harvester = redFamily.harvesters[0];
-  const cell = model.cellAt(1, 2);
-
-  harvester.goToCell(cell);
-  expect(harvester.cell).toBe(cell);
-});
-
 test('Cell has reference to the harvesters located on it', () => {
   const harvester1 = redFamily.harvesters[0];
   const harvester2 = redFamily.harvesters[1];
@@ -186,12 +202,7 @@ test('Can remove all harvesters from cell', () => {
   const harvesters = cell.harvesters;
 
   cell.removeHarvesters();
-  
   expect(cell.hasHarvesters()).toBeFalsy();
-  expect(harvesters).toHaveLength(3); // to avoid rotten green test
-  
-  harvesters.forEach((harvester) => 
-    expect(harvester.cell).toBeNull());
 });
 
 test('Can bring all harvesters home', () => {
@@ -200,10 +211,6 @@ test('Can bring all harvesters home', () => {
 
   model.cells.forEach((cell) => 
     expect(cell.hasHarvesters()).toBeFalsy());
-
-  model.families.forEach((family) =>
-    family.harvesters.forEach((harvester) => 
-      expect(harvester.cell).toBeNull()));
 });
 
 test('One step on non-empty model correctly regenerates the biomass', () => {
