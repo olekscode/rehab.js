@@ -1,4 +1,3 @@
-// import { Model, Cell, Harvester } from "./index";
 const { Model, Cell, Harvester } = require('./index');
 
 const INITIAL_MATRIX = [
