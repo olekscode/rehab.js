@@ -1,6 +1,6 @@
 {
   "name": "rehab-game",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A serious game developed at CIRAD",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/olekscode/rehab.js.git"
+    "url": "git+https://github.com/olekscode/rehab-game.git"
   },
   "keywords": [
     "serious",
@@ -21,9 +21,9 @@
   "author": "Oleksandr Zaitsev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/olekscode/rehab.js/issues"
+    "url": "https://github.com/olekscode/rehab-game/issues"
   },
-  "homepage": "https://github.com/olekscode/rehab.js#readme",
+  "homepage": "https://github.com/olekscode/rehab-game#readme",
   "devDependencies": {
     "jest": "^29.7.0"
   }

@@ -1,4 +1,3 @@
-// import { Model, Cell, Harvester } from "./index";
 const { ReHabModel, ReHabCell, ReHabHarvester } = require('./index');
 
 const INITIAL_MATRIX = [
