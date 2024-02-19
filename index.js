@@ -1,5 +1,5 @@
 const { ReHabModel, ReHabCell, ReHabFamily, ReHabHarvester } = require('model');
-const { ReHabGame, ReHabRound, ReHabStep, ReHabPlayer } = require('game');
+const { ReHabGame, ReHabTurn, ReHabRound, ReHabPlayer } = require('game');
 
 module.exports = {
   ReHabModel,
@@ -7,7 +7,7 @@ module.exports = {
   ReHabFamily,
   ReHabHarvester,
   ReHabGame,
+  ReHabTurn,
   ReHabRound,
-  ReHabStep,
   ReHabPlayer
  };
