@@ -1,11 +1,11 @@
-const NUMBER_OF_ROUNDS = 2;
-const STEPS_PER_ROUND = 5;
+const NUMBER_OF_TURNS = 2;
+const ROUNDS_PER_TURN = 5;
 
 class ReHabGame {
   constructor(model) {
     this.model = model;
-    this.numberOfRounds = NUMBER_OF_ROUNDS;
-    this.rounds = [];
+    this.numberOfTurns = NUMBER_OF_TURNS;
+    this.turns = [];
     this.players = [];
 
     this.organizationInfo = {
@@ -20,36 +20,36 @@ class ReHabGame {
     this.players.push(new ReHabPlayer(name));
   }
 
+  nextTurn() {
+    this.turns.push(new ReHabTurn(this));
+  }
+
+  isFinalTurn() {
+    return this.turns.length < this.numberOfTurns;
+  }
+
+  currentTurn() {
+    return this.turns[0];
+  }
+}
+
+class ReHabTurn {
+  constructor(game) {
+    this.game_ = game;
+    this.numberOfRounds = ROUNDS_PER_TURN;
+    this.rounds = [];
+  }
+
   nextRound() {
-    this.rounds.push(new ReHabRound(this));
+    this.rounds.push(new ReHabRound(this.game_));
   }
 
   isFinalRound() {
     return this.rounds.length < this.numberOfRounds;
   }
-
-  currentRound() {
-    return this.rounds[0];
-  }
 }
 
 class ReHabRound {
-  constructor(game) {
-    this.game_ = game;
-    this.numberOfSteps = STEPS_PER_ROUND;
-    this.steps = [];
-  }
-
-  nextStep() {
-    this.steps.push(new ReHabStep(this.game_));
-  }
-
-  isFinalStep() {
-    return this.steps.length < this.numberOfSteps;
-  }
-}
-
-class ReHabStep {
   constructor(game) {
     this.game_ = game;
   }
@@ -71,4 +71,4 @@ class ReHabPlayer {
   }
 }
 
-module.exports = { ReHabGame };
+module.exports = { ReHabGame, ReHabTurn, ReHabRound, ReHabPlayer };
